@@ -1,0 +1,12 @@
+<h2 style="font-size: 45px;">{{changeableAttributes.name}}</h2>
+
+<p style="font-size: 14px !important;">{{tracks.length}} tracks &sdot;
+    Published {{playlist.dateCreated | date:"dd/MM/yyyy"}} by <a href="{{'/profile/' + playlist.createdBy}}" class="bordered-link" ng-bind="playlist.createdBy"></a> &sdot;
+    {{playlist.views}} views &sdot; {{playlist.likes.length}} likes
+</p>
+
+<p style="font-size: 25px !important;">{{changeableAttributes.description}}</p>
+
+<span ng-repeat="tag in tags">
+    <button type="button" class="tag btn btn-default btn-tag big-tag">{{ tag }}</button>
+</span>

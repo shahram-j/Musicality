@@ -1,0 +1,38 @@
+<h3 class="playlist-title">tracks, songs and videos</h3>
+
+<div class="form-group add-tag">
+  <div class="input-group-vertical">
+      <input type="text" class="form-control" ng-model="trackSearch.title" placeholder="Search through the playlist's tracks by title">
+
+      <div ng-if="isAuthor" class="text-center">
+          <button ng-click="" style="width: 100%; border-top: none !important;" data-toggle="modal" data-target="#tracks-delete-modal" class="btn btn-default">Delete all tracks</button>
+      </div>
+  </div>
+</div>
+
+<div are-you-sure-delete-tracks></div>
+
+<table class="table table-striped tracks-table">
+    <thead>
+    <tr>
+        <th>#</th>
+        <th></th>
+        <th>Track</th>
+        <th>Source</th>
+        <th ng-show="isAuthor"></th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr ng-repeat="track in tracks | filter:trackSearch" add-to-playlist title="{{track.title}}"
+        tsource="{{track.source}}" playback-url="{{track.playbackURL}}" ng-class="{'track-border-bottom': $last}">
+        <td>{{$index + 1 + "."}}</td>
+        <td class="not-td-link">
+            <i class="material-icons btn-gray-hover-color" ng-click="playTrack(track)">play_circle_filled</i>
+        </td>
+        <td>{{track.title}}</td>
+        <td>{{track.source}}</td>
+        <td ng-show="isAuthor" class="not-td-link"><i class="material-icons btn-gray-hover-color" ng-click="deleteTrackFromPlaylist(track.playbackURL)">clear</i></td>
+    </tr>
+    </tbody>
+</table>

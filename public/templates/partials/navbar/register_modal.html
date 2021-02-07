@@ -1,0 +1,81 @@
+<div id="register-modal" tabindex="-1" role="dialog" class="modal fade">
+    <div role="document" class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h3 class="login-h3 center">register and begin your adventure</h3>
+
+                <div class="login-desc">Create your own Musicality account now. You can sign up using your email address and start listening to the latest tracks immediately. What are you waiting
+                    for?
+                </div>
+
+                <div ng-show="registerError" class="alert alert-danger alert-bad-auth">{{ registerError.message }}</div>
+
+                <form id="navbar-register" ng-submit="register()" autocomplete="off">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <input bootstrap-tooltip data-placement="left"
+                                       title="Your username must be unique, you will be referred to using this. Choose wisely as you cannot change this. No special characters are allowed with the exception of '_' and '.'"
+                                       type="text" ng-model="user.username" placeholder="Username of preference" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="text" ng-model="user.first_name" placeholder="First name" class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="text" ng-model="user.last_name" placeholder="Last name" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="email" ng-model="user.email" placeholder="Email address" class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="email" ng-model="user.confirm_email" placeholder="Confirm email address" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input bootstrap-tooltip data-placement="left"
+                                       title="Uppercase, lowercase, symbols and numbers are all allowed. Must be at least 6 characters long." type="password" ng-model="user.password"
+                                       placeholder="Password" class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="password" ng-model="user.confirm_password" placeholder="Confirm password" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <button id="submit-register" type="submit" class="btn btn-black center login-button">create account</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+                <h5 class="register-h5 center">already have a Musicality account? <a href="#" open-login close-register data-toggle="modal" data-target="#register-modal">log in</a></h5>
+            </div>
+        </div>
+    </div>
+</div>

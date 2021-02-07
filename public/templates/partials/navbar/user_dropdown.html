@@ -1,0 +1,7 @@
+<ul class="dropdown-menu dropdown-menu-right dropdown-regular">
+    <li><a ng-click="createNewBlankPlaylist()" href="#" class="middle-align"><i class="material-icons">add</i> <span>create a new playlist</span></a></li>
+
+    <li><a ng-href="{{'/profile/' + currentUser()}}" class="middle-align"><i class="material-icons">person</i> <span>visit your profile</span></a></li>
+
+    <li ng-show="isLoggedIn()"><a href="#" ng-click="logOut()" class="middle-align"><i class="material-icons">exit_to_app</i> <span>log out</span></a></li>
+</ul>

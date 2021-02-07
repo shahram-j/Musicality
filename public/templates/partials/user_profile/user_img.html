@@ -1,0 +1,24 @@
+<div ng-show="isAuthor === true">
+    <a class="rounded-thumbnail thumbnail clear-margin profile-img-menu dashed" profile-image ng-if="changeableAttributes.profileImg !== 'generated'" type="file" href="{{'/profile/' + user.username}}"
+       ngf-select="uploadProfileImg(changeableAttributes.profileImgNew)" ng-model="changeableAttributes.profileImgNew" ngf-drop="uploadProfileImg(changeableAttributes.profileImgNew)"
+       ngf-pattern="'image/*'" ngf-drag-over-class="'drop-files-over-thumbnail'" ngf-accept="'image/*'" ngf-max-size="10MB" accept="image/*">
+
+        <img ng-src="{{changeableAttributes.profileImg}}">
+    </a>
+
+    <div ng-if="changeableAttributes.profileImg === 'generated'" class="drop-files" ngf-drop="uploadProfileImg(changeableAttributes.profileImgNew)"
+         ngf-drag-over-class="'drop-files-over'" ngf-select="uploadProfileImg(changeableAttributes.profileImgNew)" ng-model="changeableAttributes.profileImgNew"
+         ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="10MB" accept="image/*">
+
+        <div style="font-size: 20px !important; text-align: center;">Drop an image here or click to upload</div>
+        <div style="font-size: 12px; margin-top: 20px;">What you use as your profile image is up to you</div>
+        <div style="font-size: 12px; margin-top: 20px;">This will be seen on your public Musicality profile and in other convenient places so choose wisely</div>
+    </div>
+</div>
+
+<div ng-if="isAuthor === false">
+    <a profile-image href="{{'/profile/' + user.username}}" class="thumbnail clear-margin profile-img-menu rounded-thumbnail">
+        <img ng-show="user.img === 'generated'" src="/images/profile_placeholder.png">
+        <img ng-show="user.img !== 'generated'" ng-src="{{user.img}}">
+    </a>
+</div>

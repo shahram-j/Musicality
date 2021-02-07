@@ -1,0 +1,8 @@
+<small class="small-embossed red-color">FIRST NAME</small>
+<p class="playlist-edit playlist-edit-name" ng-model="changeableAttributes.firstName">{{user.firstName}}</p>
+
+<small class="small-embossed red-color">LAST NAME</small>
+<p class="playlist-edit playlist-edit-descr" ng-model="changeableAttributes.lastName">{{user.lastName}}</p>
+
+<small ng-show="isAuthor" class="small-embossed red-color">EMAIL</small>
+<p ng-show="isAuthor" class="playlist-edit playlist-edit-descr" ng-model="changeableAttributes.lastName">{{user.email}}</p>

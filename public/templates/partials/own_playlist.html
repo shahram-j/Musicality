@@ -1,0 +1,41 @@
+<div class="panel panel-default recent-playlist own-playlist w">
+    <div ng-if="isAuthor" class="panel-heading">You created this playlist on {{playlist.dateCreated | date:"dd/MM/yyyy 'at' h:mma" | lowercase}}. <a
+            href="{{'/' + playlist.createdBy + '/' + playlist.slug}}">Edit playlist</a> to make changes.
+    </div>
+    <div ng-if="!isAuthor" class="panel-heading">The author shared this on {{playlist.dateCreated | date:"dd/MM/yyyy" | lowercase}}.</div>
+
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-6" style="padding-right: 0;">
+                <div class="playlist-attr playlist-font-size">
+                    <a class="always-black"
+                       href="{{'/' + playlist.createdBy + '/' + playlist.slug}}"><h3
+                            class="playlist-title">{{ playlist.name }}</h3></a>
+
+                    <div class="playlist-descr">
+                        {{ playlist.description }}
+                    </div>
+
+                    <div class="playlist-stats">{{playlist.views}} views &sdot; {{playlist.likes.length}} likes &sdot; {{playlist.tracks.length}} tracks</div>
+                </div>
+            </div>
+
+            <div style="margin-bottom: 0;" class="col-md-6">
+                <a href="{{'/' + playlist.createdBy + '/' + playlist.slug}}" class="thumbnail">
+                    <img ng-if="playlist.art === 'generated'" src="/images/placeholder.png">
+                    <img ng-if="playlist.art !== 'generated'" src="{{playlist.art}}">
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="panel-footer">
+        <div class="red-color" ng-show="playlist.tags.length === 0">
+            You haven't added any tags to this playlist!
+        </div>
+
+        <div ng-if="playlist.tags.length > 0" class="emphasis" style="padding: 0 0 7px 0; font-size: 14px;">genres and tags</div>
+        <span style="vertical-align: middle" ng-if="playlist.tags.length > 0" ng-repeat="tag in playlist.tags">
+            <button type="button" class="tag btn btn-default btn-tag">{{ tag }}</button>
+        </span>
+    </div>
+</div>

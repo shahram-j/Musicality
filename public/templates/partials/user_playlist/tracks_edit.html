@@ -1,0 +1,28 @@
+<h3 class="playlist-title">add music</h3>
+
+<div class="red-color" ng-show="tracksToBeAdded.length === 0 && !message">
+    No tracks are in the queue yet. Search for your desired tracks below...
+</div>
+
+<div class="red-color" ng-show="message">{{message}}</div>
+
+<div ng-repeat="trackToAdd in tracksToBeAdded">
+    <div ng-class="{'queue-msg-margin': message && $index === 0}" class="btn-group-vertical">
+        <button style="margin-bottom: 0; text-align: left;" type="button" class="tag btn btn-default btn-tag">
+            {{ trackToAdd.title }}
+            <div style='padding-top: 5px; text-align: center;'>
+                <small>{{trackToAdd.source}}</small>
+            </div>
+        </button>
+
+        <button ng-click="removeTrackFromAddQueue(trackToAdd.title, trackToAdd.playbackURL)" type="button"
+                class="tag btn btn-default btn-tag"><i>remove from add queue</i>
+        </button>
+    </div>
+</div>
+
+
+<div class="add-tag form-group">
+    <input id="quick-add-search" ng-model="tracksToBeAdded.newTrack" quick-add-typeahead class="form-control" type="text" placeholder="Search multiple sources">
+    <button ng-click="addTracksInQueueToPlaylist()" class="btn btn-default btn-new-line">Add track(s)</button>
+</div>

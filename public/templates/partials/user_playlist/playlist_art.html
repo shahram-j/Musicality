@@ -1,0 +1,24 @@
+<div ng-show="isAuthor === true">
+    <a playlist-art-menu ng-if="changeableAttributes.playlistArt !== 'generated'" type="file" href="#" class="thumbnail clear-margin playlist-art-menu dashed"
+       ngf-select="uploadArt(changeableAttributes.playlistArtNew)" ng-model="changeableAttributes.playlistArtNew" ngf-drop="uploadArt(changeableAttributes.playlistArtNew)"
+       ngf-pattern="'image/*'" ngf-drag-over-class="'drop-files-over-thumbnail'" ngf-accept="'image/*'" ngf-max-size="10MB" accept="image/*">
+
+        <img ng-src="{{changeableAttributes.playlistArt}}">
+    </a>
+
+    <div ng-if="changeableAttributes.playlistArt === 'generated'" class="drop-files" ngf-drop="uploadArt(changeableAttributes.playlistArtNew)"
+         ngf-drag-over-class="'drop-files-over'" ngf-select="uploadArt(changeableAttributes.playlistArtNew)" ng-model="changeableAttributes.playlistArtNew"
+         ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="10MB" accept="image/*">
+
+        <div style="font-size: 20px !important; text-align: center;">Drop an image here or click to upload</div>
+        <div style="font-size: 12px; margin-top: 20px;">Choose an image that really reflects what the playlist is about</div>
+        <div style="font-size: 12px; margin-top: 20px;">If you're unable to drop an image, please try switching to a different browser such as Google Chrome</div>
+    </div>
+</div>
+
+<div ng-if="isAuthor !== true">
+    <a playlist-art-menu href="{{'/' + playlist.createdBy + '/' + playlist.slug}}" class="thumbnail clear-margin playlist-art-menu">
+        <img ng-show="playlist.art === 'generated'" src="/images/placeholder.png">
+        <img ng-show="playlist.art !== 'generated'" ng-src="{{playlist.art}}">
+    </a>
+</div>

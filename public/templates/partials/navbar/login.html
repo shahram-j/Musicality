@@ -1,0 +1,27 @@
+<ul class="dropdown-menu dropdown-menu-right dropdown-login">
+    <div class="row">
+        <div stop-prop class="col-md-12">
+            <h3 class="login-h3 center">welcome back!</h3>
+
+            <div class="login-desc">Have an account? Continue with your musical experience.</div>
+
+            <div ng-show="loginError" class="alert alert-danger alert-bad-auth">{{ loginError.message }}</div>
+
+            <form id="navbar-login" ng-submit="logIn()" autocomplete="off">
+                <div class="form-group">
+                    <input type="text" ng-model="user.username" placeholder="Username" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <input type="password" ng-model="user.password" placeholder="Password" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <button id="submit-login" type="submit" class="btn btn-black center login-button">get back to listenin'</button>
+                </div>
+            </form>
+
+            <h5 class="login-h5 center">not a member? <a href="#" data-toggle="modal" data-target="#register-modal">register</a></h5>
+        </div>
+    </div>
+</ul>

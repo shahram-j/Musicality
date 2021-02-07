@@ -1,0 +1,79 @@
+<div class="row">
+    <div class="col-md-12 jumbo-col">
+        <div ng-if="exists === false">
+            <div class="col-md-6 col-md-offset-3">
+                <p>That playlist does not exist. Perhaps you entered the URL incorrectly? <a href="/">Go home</a>.</p>
+            </div>
+        </div>
+
+        <div ng-if="exists === true">
+            <div class="col-md-6 col-md-offset-3">
+                <div ng-show="playlist.tracks.length < 3 && isAuthor" class="alert alert-warning playlist-viewing-warning" role="alert">
+                    This playlist is not publicly available. At least 3 tracks are required, be sure to amend the name and description to let people know what this playlist truly is about. Happy
+                    listening!
+                </div>
+
+                <div class="row">
+                    <div playlist-art class="col-md-4"></div>
+                    <div playlist-summary class="col-md-8"></div>
+                </div>
+
+                <div playlist-toolbar></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div ng-if="exists === true">
+    <div style="margin-top: 5px;" class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="row splitter">
+                <div class="col-md-8">
+                    <div ng-show="isAuthor === true" class="panel panel-default other-panel">
+                        <div class="panel-body">
+                            <div playlist-details class="playlist-attr"></div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default other-panel">
+                        <div class="panel-body">
+                            <div tracks class="playlist-attr"></div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default other-panel">
+                        <div class="panel-body">
+                            <div comments class="playlist-attr"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div ng-show="isAuthor === true" class="panel panel-default other-panel">
+                        <div class="panel-body">
+                            <div tags-edit class="playlist-attr"></div>
+                        </div>
+                    </div>
+
+                    <div ng-show="isAuthor === true" class="panel panel-default other-panel">
+                        <div class="panel-body">
+                            <div tracks-edit class="playlist-attr"></div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default other-panel">
+                        <div class="panel-body">
+                            <div author-playlists class="playlist-attr"></div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default other-panel">
+                        <div class="panel-body">
+                            <div likes class="playlist-attr"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

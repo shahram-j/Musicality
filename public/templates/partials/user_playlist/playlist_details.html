@@ -1,0 +1,18 @@
+<h3 class="playlist-title">playlist details</h3>
+
+<small class="red-color" style="margin-bottom: 20px; display: block;">{{fieldsChangeMessage}}</small>
+
+<small class="small-embossed red-color">TITLE</small>
+<p class="playlist-edit playlist-edit-name" contenteditable="true" ng-model="changeableAttributes.name">{{playlist.name}}</p>
+
+<small class="small-embossed red-color">DESCRIPTION</small>
+<p class="playlist-edit playlist-edit-descr" contenteditable="true" ng-model="changeableAttributes.description">{{playlist.description}}</p>
+
+<small class="small-embossed red-color">DATE CREATED</small>
+<p>{{playlist.dateCreated | date:"dd/MM/yyyy"}}</p>
+
+<small class="small-embossed red-color">AUTHOR</small>
+<p><a href="{{'/profile/' + playlist.createdBy}}" class="bordered-link" ng-bind="playlist.createdBy"></a></p>
+
+<small class="small-embossed red-color">STATISTICS</small>
+<p>{{playlist.views}} views, {{playlist.likes.length}} likes and {{playlist.tracks.length}} tracks</p>

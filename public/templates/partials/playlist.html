@@ -1,0 +1,49 @@
+<div class="panel panel-default recent-playlist w">
+    <div class="panel-heading">Kindly shared by <a href="{{'/profile/' + playlist.createdBy}}" class="bordered-link no-italic" ng-bind="playlist.createdBy"></a> on
+        {{playlist.dateCreated |
+        date:"dd/MM/yyyy" |
+        lowercase}}.
+    </div>
+
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-6" style="padding-right: 0;">
+                <div class="playlist-attr playlist-font-size">
+                    <a class="always-black" href="{{'/' + playlist.createdBy + '/' + playlist.slug}}"><h3 class="playlist-title">{{ playlist.name }}</h3></a>
+
+                    <div class="playlist-descr">
+                        {{ playlist.description }}
+                    </div>
+
+                    <div class="playlist-stats">{{playlist.views}} views &sdot; {{playlist.likes.length}} likes &sdot; {{playlist.tracks.length}} tracks</div>
+                </div>
+            </div>
+            <div style="margin-bottom: 0;" class="col-md-6">
+                <a href="{{'/' + playlist.createdBy + '/' + playlist.slug}}" class="thumbnail">
+                    <img ng-if="playlist.art === 'generated'" src="/images/placeholder.png">
+                    <img ng-if="playlist.art !== 'generated'" src="{{playlist.art}}">
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="panel-footer">
+        <div class="red-color" ng-show="playlist.tags.length === 0">
+            No tags associated with this playlist!
+        </div>
+
+        <div ng-if="playlist.tags.length > 0" class="emphasis" style="padding: 0 0 7px 0; font-size: 14px;">genres and tags</div>
+        <span style="vertical-align: middle" ng-if="playlist.tags.length > 0" ng-repeat="tag in playlist.tags">
+            <button type="button" class="tag btn btn-default btn-tag">{{ tag }}</button>
+        </span>
+
+        <div class="emphasis" style="padding: 14px 0 7px 0; font-size: 14px;">featured tracks</div>
+        <table class="table table-striped tracks-table">
+            <tbody>
+            <tr ng-click="playTrack(track, playlist)" ng-repeat="track in playlist.featuredTracks track by $index" style="font-size: 14px;">
+                <td><i class="material-icons" >play_circle_filled</i></td>
+                <td style="font-weight: normal; border-top: 0 !important; text-align: left;">{{ track.title}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

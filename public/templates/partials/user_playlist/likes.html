@@ -1,0 +1,14 @@
+<h3 class="playlist-title">likes</h3>
+
+<div class="red-color" ng-if="likes.length === 0">Are you a fan of this playlist? If that is certainly the case, leave a like to show your appreciation!</div>
+
+<div ng-if="likes.length !== 0">
+    <!--<div class="red-color" style="padding-bottom: 15px;">Below are the following people who have liked the playlist.</div>-->
+
+    <div ng-repeat="like in likes" class="col-md-4" ng-class="{'last-like': $last}" bootstrap-tooltip data-placement="top" title="{{like.username}}">
+        <a href="{{'/profile/' + like.username}}" class="thumbnail clear-margin rounded-thumbnail">
+            <img ng-show="like.img === 'generated'" src="/images/profile_placeholder.png">
+            <img ng-show="like.img !== 'generated'" ng-src="{{like.img}}">
+        </a>
+    </div>
+</div>

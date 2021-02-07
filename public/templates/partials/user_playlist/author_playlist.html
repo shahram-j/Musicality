@@ -1,0 +1,16 @@
+<div class="row" style="padding: 5px;">
+    <div class="col-md-4" style="padding-right: 0;">
+        <a href="{{'/' + authorPlaylist.createdBy + '/' + authorPlaylist.slug}}" class="thumbnail clear-margin">
+            <img ng-show="authorPlaylist.art === 'generated'" src="/images/placeholder.png">
+            <img ng-show="authorPlaylist.art !== 'generated'" src="{{authorPlaylist.art}}">
+        </a>
+    </div>
+
+    <div class="col-md-8">
+        <a class="always-black" href="{{'/' + authorPlaylist.createdBy + '/' + authorPlaylist.slug}}">
+            <h2 style="font-size: 18px; margin: 0; padding: 5px 5px 5px 0;">{{authorPlaylist.name}}</h2>
+        </a>
+
+        <p style="margin-bottom: 10px !important; font-size: 12px !important;">{{authorPlaylist.description}}</p>
+    </div>
+</div>

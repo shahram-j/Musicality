@@ -1,0 +1,47 @@
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>all users</h2>
+
+                <p>Displaying all the users that have signed up on Musicality</p>
+
+                <div class="row" infinite-scroll='pagination.nextPage()' infinite-scroll-disabled='pagination.busy' infinite-scroll-distance='1'>
+                    <div ng-repeat="user in pagination.items">
+                        <div class="clearfix" ng-show="$index % 2 == 0"></div>
+
+                        <div class="col-md-6">
+                            <div class="panel panel-default recent-playlist">
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <div class="col-md-6" style="padding-right: 0;">
+                                            <div class="playlist-attr playlist-font-size">
+                                                <a class="always-black" href="{{'/profile/' + user.username}}"><h3 class="playlist-title">{{ user.username }}</h3></a>
+
+                                                <div class="playlist-descr">
+                                                    <span>{{user.firstName}} {{user.lastName}} has a total of <span class="red-color">{{user.countPlaylists}}</span> playlists
+                                                        and has accumulated <span class="red-color">{{user.totalViews}}</span> views.</span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div style="margin-bottom: 0;" class="col-md-6">
+                                            <a href="{{'/profile/' + user.username}}" class="rounded-thumbnail thumbnail">
+                                                <img ng-if="user.img === 'generated'" src="/images/profile_placeholder.png">
+                                                <img ng-if="user.img !== 'generated'" src="{{user.img}}">
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <p ng-show='pagination.busy && !pagination.done'>Loading users...</p>
+
+                <p class="red-color" ng-show='pagination.done'>No more users for you to see.</p>
+            </div>
+        </div>
+    </div>
+</div>

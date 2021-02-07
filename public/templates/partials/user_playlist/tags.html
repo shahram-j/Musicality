@@ -1,0 +1,23 @@
+<h3 class="playlist-title">tags</h3>
+
+<div class="red-color" ng-show="playlist.tags.length === 0">
+    No tags associated with this playlist!
+</div>
+
+<span ng-repeat="tag in tags">
+    <div class="btn-group">
+        <button type="button" class="tag btn btn-default btn-tag">{{ tag }}</button>
+
+        <button ng-click="deleteTag(playlist, tag)" type="button" class="tag btn btn-default btn-tag pointers btn-gray-hover"><i class="material-icons" style="font-size: inherit; vertical-align: middle;">remove</i></button>
+    </div>
+</span>
+
+<div class="form-group add-tag">
+    <div class="input-group">
+        <input id="tags-search" tags-typeahead ng-keyup="$event.keyCode == 13 && addTag()" type="text" class="form-control" ng-model="tags.newTag" placeholder="New tag">
+
+        <span class="input-group-btn"><button ng-click="addTag()" class="btn btn-default">Add tag</button></span>
+    </div>
+</div>
+
+<div class="red-color" ng-show="error">{{error}}</div>

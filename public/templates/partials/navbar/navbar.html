@@ -1,0 +1,118 @@
+<div ng-controller="AuthCtrl">
+    <nav class="navbar navbar-inverse navbar-fixed-top" ng-controller="NavCtrl">
+        <ul class="nav navbar-nav pull-left">
+            <li><a ui-sref="home">home</a></li>
+            <li><a ui-sref="all_playlists">playlists</a></li>
+            <li><a ui-sref="all_profiles">users</a></li>
+
+            <li><a href="#" data-toggle="sidebar" data-target=".now-playing-sidebar">player</a></li>
+            <div class="col-xs-7 col-sm-3 col-md-2 sidebar now-playing-sidebar sidebar-left sidebar-animate">
+                <div class="row">
+                    <div class="col-md-12" style="padding-bottom: 15px;">
+                        <h3 class="login-h3 center now-playing">NOW PLAYING</h3>
+
+                        <div class="login-desc center now-playing">You are currently listening to</div>
+
+                        <div id="current-track" class="login-desc center">
+                            <span ng-if="!getNowPlaying()">absolutely nothing at all!</span>
+                            <span>{{getNowPlaying().track.title}}</span>
+
+                            <div ng-show="getNowPlaying()" class="embed-responsive embed-responsive-16by9">
+                                <div yt-player-init class="player" id="yt-player"></div>
+                                <iframe sc-player class="player" src=""></iframe>
+                            </div>
+                        </div>
+
+                        <div ng-if="!getNowPlaying()">
+                            <div ng-if="!isLoggedIn()" class="login-desc center now-playing">
+                                You aren't logged in. <a href="#" open-login>Log in</a> or <a href="#" data-toggle="modal" data-target="#register-modal">sign up</a> to create your own
+                                playlists and add your own
+                                tracks.
+                            </div>
+
+                            <div ng-if="isLoggedIn()" class="login-desc center now-playing">
+                                You're sitting idle. Perhaps start listening to some of your favourite <a href="{{'/profile/' + currentUser()}}">playlists and tunes</a>.
+                                Or explore some of the <a ui-sref="all_playlists">latest playlists</a>.
+                            </div>
+                        </div>
+
+                        <div ng-hide="!getNowPlaying()">
+                            <div player-slider></div>
+                        </div>
+
+                        <div ng-if="getNowPlaying()" class="controls">
+                            <div class="player_controls">
+                                <div class="btn-group">
+                                    <a href="#" ng-class="{'disabled': !hasPreviousTrack()}" ng-click="playPreviousTrack()" class="btn btn-inverse"><i class="material-icons">skip_previous</i></a>
+
+                                    <a href="#" ng-class="{'disabled': playPauseCondition()}" ng-click="toggleTrackState()" class="btn btn-inverse">
+                                        <i ng-show="playCondition()" class="material-icons">
+                                            play_arrow
+                                        </i>
+
+                                        <i ng-show="pauseCondition()" class="material-icons">pause</i>
+                                    </a>
+
+                                    <a href="#" ng-class="{'disabled': !hasNextTrack()}" ng-click="playNextTrack()" class="btn btn-inverse"><i class="material-icons">skip_next</i></a>
+                                </div>
+                            </div>
+
+                            <div id="bottom-controls" class="player_controls">
+                                <div class="btn-group">
+                                    <a href="#" class="btn btn-inverse">
+                                        <i ng-show="volume === 100 || volume === 1" ng-click="volumeDown()" class="material-icons">volume_up</i>
+                                        <i ng-show="volume === 50 ||  volume === 0.5" ng-click="volumeMute()" class="material-icons">volume_down</i>
+                                        <i ng-show="volume === 0" ng-click="volumeUp()" class="material-icons">volume_mute</i>
+                                    </a>
+
+                                    <a href="#" class="btn btn-inverse" ng-click="endNowPlaying()"><i class="material-icons">stop</i></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div ng-if="getNowPlaying()" class="fjalla center" style="font-size: 18px; padding: 10px 0; color: white;">
+                            <a href="{{'/' + getNowPlaying().fromPlaylist.createdBy + '/' + getNowPlaying().fromPlaylist.slug}}"
+                               class="fjalla non-bordered-link">{{getNowPlaying().fromPlaylist.name}}</a> by
+                            <a href="{{'/profile/' + getNowPlaying().fromPlaylist.createdBy}}" class="fjalla non-bordered-link">{{getNowPlaying().fromPlaylist.createdBy}}</a>
+                        </div>
+
+                        <table ng-if="getNowPlaying()" class="table tracks-table tracks-player">
+                            <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Track</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-class="{'current-track': getNowPlaying().track.title === track.title}" ng-repeat="track in getNowPlaying().fromPlaylist.tracks"
+                                ng-click="playTrack(track, getNowPlaying().fromPlaylist)">
+                                <td ng-class="{'red-color': getNowPlaying().track.title === track.title}">{{$index + 1 + "."}}</td>
+                                <td ng-class="{'red-color': getNowPlaying().track.title === track.title}">{{track.title}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <li><a href="#" data-toggle="modal" data-target="#about-modal">about</a></li>
+        </ul>
+
+        <ul class="nav navbar-nav pull-right">
+            <li ng-show="isLoggedIn()" ng-cloak class="dropdown">
+                <a href="#" data-toggle="dropdown" role="button" class="dropdown-toggle">currently logged in as {{currentUser()}}<span class="caret"></span></a>
+
+                <div user-drop></div>
+            </li>
+
+            <li ng-hide="isLoggedIn()" class="dropdown">
+                <a id="login-navbar-link" href="#" data-toggle="dropdown" role="button" class="dropdown-toggle">log in<span class="caret"></span></a>
+
+                <div login></div>
+            </li>
+        </ul>
+    </nav>
+
+    <ng-include src="'/templates/partials/navbar/register_modal.html'"></ng-include>
+    <ng-include src="'/templates/partials/navbar/about_modal.html'"></ng-include>
+</div>

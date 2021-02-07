@@ -1,0 +1,61 @@
+<div id="headers">
+    <h1 id="logo" class="center">Musicality</h1>
+
+    <h3 class='center'>search multiple sources by a simple input</h3>
+</div>
+
+<div class="row">
+    <div id="search_by" class="col-md-6 col-md-offset-3">
+        <ul id="search_type" class="nav nav-tabs">
+            <li class="tab-active"><a href="#">Search type.</a></li>
+            <li class="search-type-active-parent"><a href="#" style="text-align: center" class="search-type-active">Tracks</a></li>
+            <li><a ui-sref="all_playlists">Playlists</a></li>
+            <li><a ui-sref="all_profiles">Users</a></li>
+        </ul>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <form>
+            <div id="main_search" class="form-group">
+                <div class="input-group">
+                    <input search-bar id="search_bar" type="text" placeholder="Discover a new realm of music" class="form-control">
+
+                    <span class="input-group-btn"><i class="fa fa-youtube-play" aria-hidden="true"></i>
+                        <button id="search" type="button" ng-click="clear()" class="btn btn-default"><i class="material-icons">clear</i></button>
+                        <button onclick="$('#search_bar').val() ? window.open('//soundcloud.com/search?q=' + encodeURIComponent($('#search_bar').val())) : window.open('//soundcloud.com')"
+                                style="color: #999999" id="search" type="button" class="btn btn-default"><i class="fa fa-soundcloud" aria-hidden="true"></i></button>
+                        <button onclick="window.open('//www.youtube.com/results?search_query=' + encodeURIComponent($('#search_bar').val()))" style="color: #999999" id="search" type="button"
+                                class="btn btn-default"><i class="fa fa-youtube" aria-hidden="true"></i></button>
+                    </span>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div id="search_results" class="row hide-musicality">
+    <div class="col-md-6 col-md-offset-3">
+        <div class="row" id="main-search-results"></div>
+    </div>
+</div>
+
+<div id="hide-for-search">
+    <div class="center">
+        <h2 class="mod-heading">recent playlists</h2>
+        <a ui-sref="all_playlists">view all</a>
+    </div>
+
+    <div class="recent-playlists">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <div class="grid">
+                    <div class="grid-item" ng-repeat="playlist in recentPlaylists">
+                        <ng-include src="'/templates/partials/playlist.html'"></ng-include>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

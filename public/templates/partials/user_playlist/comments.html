@@ -1,0 +1,45 @@
+<h3 class="playlist-title">reviews and listener's comments</h3>
+
+<div class="red-color" style="display: block;">{{commentActionMsg}}</div>
+
+<div ng-class="{'comments-padding-bottom': comments.length > 0}" ng-show="isLoggedIn()">
+    <div class="form-group add-tag">
+        <div class="input-group-vertical">
+            <textarea style="color: black;" placeholder="Type your comment you want to share with other people who view this playlist" class="comments-editor form-control"
+                      ng-model="changeableAttributes.comment">
+            </textarea>
+
+            <div class="text-center">
+                <button ng-click="addComment()" style="float: left; width: 50%; border-right: none !important; border-top: none !important;" class="btn btn-default">
+                    Post comment
+                </button>
+
+                <button ng-click="clearComments()" style="width: 50%; border-top: none !important;" class="btn btn-default">Start again</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="red-color" ng-show="comments.length === 0 && isLoggedIn()">No one has commented on this playlist yet. Be the first?</div>
+<div class="red-color" ng-show="comments.length === 0 && !isLoggedIn()">No one has commented on this playlist yet. Be the first? <a open-login style="color: black;" href="#">Sign up</a>.</div>
+
+<div ng-show="comments.length > 0" class="row">
+    <div ng-class="{'comment-padding-bottom': !$last, 'last-comment': $last}" ng-repeat="comment in comments">
+        <div style="padding: 0 30px;" class="row">
+            <div class="col-md-2">
+                <a href="{{'/profile/' + comment.username}}" class="thumbnail clear-margin rounded-thumbnail">
+                    <img ng-if="comment.img === 'generated'" src="/images/profile_placeholder.png">
+                    <img ng-if="comment.img !== 'generated'" ng-src="{{comment.img}}">
+                </a>
+            </div>
+
+            <div class="col-md-10 padding-left-0">
+                <span style="font-size: 12px;"><a href="{{'/profile/' + comment.username}}" class="bordered-link">{{comment.username}}</a> commented at {{comment.created | date:"dd/MM/yyyy"}}</span>
+
+                <p style="margin-bottom: 0 !important; padding: 5px 0;">{{comment.comment}}</p>
+                <a href="#" style="font-size: 12px;" ng-show="comment.username === currentUser()" ng-click="deleteComment(comment.username, comment.comment)">delete comment</a>
+            </div>
+        </div>
+    </div>
+</div>
+

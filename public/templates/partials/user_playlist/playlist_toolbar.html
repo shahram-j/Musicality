@@ -1,0 +1,6 @@
+<button ng-show="isLoggedIn() && !liked" type="button" class="btn btn-black pull-right btn-gray-hover" ng-click="like()"><i class="material-icons">thumb_up</i> <span>like</span></button>
+<button ng-show="isLoggedIn() && liked" type="button" class="btn btn-black pull-right btn-gray-hover" ng-click="unlike()"><i class="material-icons">thumb_up</i> <span>unlike</span></button>
+
+<button type="button" ng-if="tracks.length > 0" ng-click="playPlaylist()" class="btn btn-black pull-right btn-gray-hover">
+    <i class="material-icons">playlist_play</i> <span>play entire playlist</span>
+</button>

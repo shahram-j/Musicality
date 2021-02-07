@@ -1,0 +1,13 @@
+<h3 class="playlist-title" ng-if="!isAuthor">some of {{playlist.createdBy}}'s other playlists</h3>
+<h3 class="playlist-title" ng-if="isAuthor">a handful of your other playlists</h3>
+
+<div ng-show="above3AuthorPlaylists.length === 0 && !isAuthor" class="red-color">No other published playlists for you to view by this author.</div>
+<div ng-show="above3AuthorPlaylists.length !== 0 && !isAuthor && $index < 5" ng-repeat="authorPlaylist in allAuthorPlaylists">
+    <ng-include ng-if="authorPlaylist.tracks.length >= 3" src="'/templates/partials/user_playlist/author_playlist.html'"></ng-include>
+</div>
+
+<div ng-show="above3AuthorPlaylists.length === 0 && isAuthor" class="red-color">This is your only playlist. Once you're done editing, create another?</div>
+<div ng-show="above3AuthorPlaylists.length !== 0 && isAuthor && $index < 5" ng-repeat="authorPlaylist in allAuthorPlaylists">
+    <ng-include src="'/templates/partials/user_playlist/author_playlist.html'"></ng-include>
+</div>
+
