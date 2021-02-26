@@ -1,6 +1,6 @@
 **The problem**
 
-After using YouTube and SoundCloud as solely music services, I can quite confidently conclude that discovering new music is not always as easy as one would expect. Managing big libraries of music over long periods of time can become a hassle and sorting through your existing libraries to find a particular track is tedious. Creating a music service like Spotify was definitely not an option but rather combining existing services with the use of a middleman – Musicality – was the only feasible route I could take.
+After using YouTube and SoundCloud as solely music services, I concluded that discovering new music is not always as easy as one would expect. Managing big libraries of music over long periods of time can become a hassle and sorting through your existing libraries to find a particular track is tedious. Creating a music service like Spotify was definitely not an option but rather combining existing services with the use of a middleman – Musicality – was the only feasible route I could take.
 
 **The solution**
 
